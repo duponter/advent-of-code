@@ -1,0 +1,41 @@
+package be.edu.adventofcode;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
+public final class Input {
+    private final Class<?> base;
+
+    public Input(Class<?> base) {
+        this.base = base;
+    }
+
+    public String text() {
+        return this.joined("");
+    }
+
+    public String joined(String separator) {
+        return String.join(separator, this.lines());
+    }
+
+    public List<String> lines() {
+        URL resource = this.base.getResource(String.format("%s.txt", this.base.getSimpleName()));
+        URI input;
+        try {
+            input = resource.toURI();
+        } catch (URISyntaxException use) {
+            throw new IllegalArgumentException(String.format("Invalid URI syntax: %s", resource.getPath()), use);
+        }
+        try {
+            return Files.readAllLines(Paths.get(input));
+        } catch (IOException ioe) {
+            throw new IllegalArgumentException(String.format("Unable to read lines from %s", resource.getPath()), ioe);
+        }
+    }
+
+}
