@@ -29,6 +29,11 @@ public class StringInput implements Input {
 
     @Override
     public List<String> lines() {
-        return List.ofAll(Arrays.asList(this.input.split("\n")));
+        return this.split("\n");
+    }
+
+    @Override
+    public List<String> split(String separator) {
+        return List.ofAll(Arrays.asList(this.input.split(separator)));
     }
 }

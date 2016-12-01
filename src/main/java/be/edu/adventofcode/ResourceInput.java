@@ -48,4 +48,8 @@ public final class ResourceInput implements Input {
         }
     }
 
+    @Override
+    public List<String> split(String separator) {
+        return new StringInput(this.text()).split(separator);
+    }
 }

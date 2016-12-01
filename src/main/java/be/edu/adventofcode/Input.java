@@ -11,4 +11,6 @@ public interface Input {
     CharSeq chars();
 
     List<String> lines();
+
+    List<String> split(String separator);
 }
