@@ -1,6 +1,6 @@
 package be.edu.adventofcode.y2015;
 
-import be.edu.adventofcode.Input;
+import be.edu.adventofcode.ResourceInput;
 import be.edu.adventofcode.Solve;
 
 public class Day01 {
@@ -10,7 +10,7 @@ public class Day01 {
     }
 
     private void part1() {
-        Integer answer = new Input(this.getClass()).chars()
+        Integer answer = new ResourceInput(this.getClass()).chars()
                 .foldLeft(0, (pos, next) -> (pos += (next == '(') ? 1 : -1));
         Solve.day(1)
                 .part(1)
@@ -19,7 +19,7 @@ public class Day01 {
     }
 
     private void part2() {
-        int answer = new Input(this.getClass()).chars()
+        int answer = new ResourceInput(this.getClass()).chars()
                 .scanLeft(0, (pos, next) -> (pos += (next == '(') ? 1 : -1))
                 .takeUntil(pos -> pos == -1)
                 .size();
