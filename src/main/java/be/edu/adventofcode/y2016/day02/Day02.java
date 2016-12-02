@@ -16,10 +16,20 @@ public class Day02 {
     private NumPad executeInstructions(NumPad start, String line) {
         return CharSeq.of(line)
                 .map(character -> Instruction.valueOf(character.toString()))
-                .foldLeft(start, (numpad, instruction) -> instruction.apply(numpad));
+                .foldLeft(start, (numpad, instruction) -> (NumPad) instruction.apply(numpad));
     }
 
-    public int part2(Input input) {
-        return 0;
+    public String part2(Input input) {
+        return input.lines()
+                .scanLeft(new KeyPad(), this::executeInstructions)
+                .tail()
+                .map(KeyPad::currentButton)
+                .foldLeft("", (s1, s2) -> s1 + s2);
+    }
+
+    private KeyPad executeInstructions(KeyPad start, String line) {
+        return CharSeq.of(line)
+                .map(character -> Instruction.valueOf(character.toString()))
+                .foldLeft(start, (numpad, instruction) -> (KeyPad) instruction.apply(numpad));
     }
 }

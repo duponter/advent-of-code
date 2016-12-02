@@ -4,7 +4,6 @@ import be.edu.adventofcode.ResourceInput;
 import be.edu.adventofcode.Solve;
 import be.edu.adventofcode.StringInput;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class Day02Test {
@@ -28,18 +27,21 @@ public class Day02Test {
     }
 
     @Test
-    @Disabled
     void assertPart2() {
-        Assertions.assertThat(new Day02().part2(new StringInput("R8, R4, R4, R8"))).isEqualTo(4);
+        String input = String.join("\n",
+                "ULL",
+                "RRDDD",
+                "LURDL",
+                "UUUUD");
+        Assertions.assertThat(new Day02().part2(new StringInput(input))).isEqualTo("5DB3");
     }
 
     @Test
-    @Disabled
     void solvePart2() {
-        int blocks = new Day02().part2(new ResourceInput(Day02.class));
+        String code = new Day02().part2(new ResourceInput(Day02.class));
         Solve.day(2)
                 .part(2)
-                .q("How many blocks away is the first location you visit twice?")
-                .a(blocks);
+                .q("What is the correct bathroom code?")
+                .a(code);
     }
 }
