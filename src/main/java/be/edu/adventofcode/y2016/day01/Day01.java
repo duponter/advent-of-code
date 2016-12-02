@@ -1,26 +1,38 @@
 package be.edu.adventofcode.y2016.day01;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.function.Predicate;
+
 import javaslang.collection.List;
 
 import be.edu.adventofcode.Input;
-import be.edu.adventofcode.Solve;
-import be.edu.adventofcode.StringInput;
 
 public class Day01 {
     public int part1(Input input) {
         return input.split(", ")
-            .map(Instruction::new)
-            .foldLeft(new Position(), Position::follow)
-            .blocks();
+                .map(Instruction::new)
+                .foldLeft(new Position(), Position::follow)
+                .coordinates().blocks();
     }
 
-    public static void main(String[] args) {
-        List.of("R2, L3", "R2, R2, R2", "R5, L5, R5, R3")
-                .forEach(instruction ->
-                        Solve.day(1)
-                                .part(1)
-                                .q(instruction + "?")
-                                .a(new Day01().part1(new StringInput(instruction))));
+    public int part2(Input input) {
+        return input.split(", ")
+                .map(Instruction::new)
+                .foldLeft(List.of(new Position()),
+                        (steps, instruction) -> steps.appendAll(steps.last().blocks(instruction)))
+                .map(Position::coordinates)
+                .dropUntil(new Duplicate())
+                .head()
+                .blocks();
+    }
 
+    private static class Duplicate implements Predicate<Coordinates> {
+        private final Set<Coordinates> uniqueCoordinates = new HashSet<>();
+
+        @Override
+        public boolean test(Coordinates coordinates) {
+            return !uniqueCoordinates.add(coordinates);
+        }
     }
 }
