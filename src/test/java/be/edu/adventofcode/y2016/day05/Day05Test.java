@@ -1,9 +1,7 @@
 package be.edu.adventofcode.y2016.day05;
 
-import be.edu.adventofcode.ResourceInput;
 import be.edu.adventofcode.Solve;
 import be.edu.adventofcode.StringInput;
-import be.edu.adventofcode.y2016.day04.Room;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -15,6 +13,7 @@ public class Day05Test {
     }
 
     @Test
+    @Disabled
     void solvePart1() {
         String pw = new Day05().part1(new StringInput("wtnhxymk"));
         Solve.day(5)
@@ -24,19 +23,17 @@ public class Day05Test {
     }
 
     @Test
-    @Disabled
     void assertPart2() {
-        Assertions.assertThat(Room.parse("qzmt-zixmtkozy-ivhz-343[abcde]").realName()).isEqualTo("very encrypted name");
+        Assertions.assertThat(new Day05().part2(new StringInput("abc"))).isEqualTo("05ace8e3");
     }
 
     @Test
-    @Disabled
     void solvePart2() {
-        int sectorId = new Day05().part2(new ResourceInput(Day05.class));
+        String pw = new Day05().part2(new StringInput("wtnhxymk"));
         Solve.day(5)
                 .part(2)
-                .q("What is the sector ID of the room where North Pole objects are stored?")
-                .a(sectorId);
+                .q("Given the actual Door ID and this new method, what is the password?")
+                .a(pw);
     }
 
 }
