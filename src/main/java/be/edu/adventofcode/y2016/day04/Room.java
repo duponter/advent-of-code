@@ -21,7 +21,7 @@ public class Room {
         if (!matcher.matches()) {
             throw new IllegalArgumentException(input);
         }
-        return new Room(matcher.group(1),Integer.parseInt(matcher.group(2)),matcher.group(3));
+        return new Room(matcher.group(1), Integer.parseInt(matcher.group(2)), matcher.group(3));
     }
 
     private Room(String encryptedName, Integer sectorId, String checkSum) {
@@ -44,12 +44,18 @@ public class Room {
                 .sorted(Tuple2.comparator(Comparator.reverseOrder(), Comparator.naturalOrder()))
                 .take(5)
                 .map(Tuple2::_2)
-                .foldLeft("", (s, c) -> s+ c)
+                .foldLeft("", (s, c) -> s + c)
                 .equals(checkSum);
     }
 
     public String realName() {
-//        qzmt-zixmtkozy-ivhz-343 is 'very encrypted name'
-        return encryptedName;
+        int rotations = sectorId % 26;
+        return CharSeq.of(encryptedName)
+                .map(c -> rotate(c, rotations))
+                .foldLeft("", (s, c) -> s + c);
+    }
+
+    private Character rotate(Character c, int count) {
+        return c == '-' ? ' ' : (char) (c + count > 'z' ? c + count - 26 : c + count);
     }
 }
