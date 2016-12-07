@@ -29,20 +29,20 @@ public class Day07Test {
     @Test
     void assertPart2() {
         String input = String.join("\n",
-                "abba[mnop]qrst",
-                "abcd[bddb]xyyx",
-                "aaaa[qwer]tyui",
-                "ioxxoj[asdfgh]zxcvbn");
-        Assertions.assertThat(new Day07().part2(new StringInput(input))).isEqualTo(0);
+                "aba[bab]xyz",
+                "xyx[xyx]xyx",
+                "aaa[kek]eke",
+                "zazbz[bzb]cdb");
+        Assertions.assertThat(new Day07().part2(new StringInput(input))).isEqualTo(3);
     }
 
     @Test
     void solvePart2() {
-        int sectorId = new Day07().part2(new ResourceInput(Day07.class));
+        int count = new Day07().part2(new ResourceInput(Day07.class));
         Solve.day(7)
                 .part(2)
-                .q("What is the sector ID of the room where North Pole objects are stored?")
-                .a(sectorId);
+                .q("How many IPs in your puzzle input support SSL?")
+                .a(count);
     }
 
 }

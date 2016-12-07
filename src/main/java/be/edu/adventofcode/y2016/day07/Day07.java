@@ -10,6 +10,8 @@ public class Day07 {
     }
 
     public int part2(Input input) {
-        return 0;
+        return input.lines()
+                .map(IPAddress::parse)
+                .count(IPAddress::supportsSSL);
     }
 }
