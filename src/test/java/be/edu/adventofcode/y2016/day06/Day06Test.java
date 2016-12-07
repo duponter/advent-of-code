@@ -65,7 +65,7 @@ public class Day06Test {
         String msg = new Day06().part2(new ResourceInput(Day06.class));
         Solve.day(6)
                 .part(2)
-                .q("Given  this new decoding methodology, what is the original message that Santa is trying to send?")
+                .q("Given this new decoding methodology, what is the original message that Santa is trying to send?")
                 .a(msg);
     }
 
