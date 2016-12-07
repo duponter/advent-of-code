@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+@Disabled
 public class Day05Test {
     @Test
     void assertPart1() {
@@ -13,7 +14,6 @@ public class Day05Test {
     }
 
     @Test
-    @Disabled
     void solvePart1() {
         String pw = new Day05().part1(new StringInput("wtnhxymk"));
         Solve.day(5)
