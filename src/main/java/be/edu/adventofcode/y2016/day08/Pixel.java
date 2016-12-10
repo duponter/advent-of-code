@@ -26,4 +26,9 @@ public final class Pixel {
     public boolean isLit() {
         return lit;
     }
+
+    @Override
+    public String toString() {
+        return this.isLit() ? "#" : " ";
+    }
 }

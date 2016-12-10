@@ -1,23 +1,23 @@
 package be.edu.adventofcode.y2016.day08;
 
-public class Landscape extends Layout {
-    public Landscape(Screen screen) {
+public class Portrait extends Layout {
+    public Portrait(Screen screen) {
         super(screen);
     }
 
     @Override
     public Layout createRectangle(int cols, int rows) {
-        screen().light(cols, rows);
+        this.screen().light(rows, cols);
         return this;
     }
 
     @Override
     public Layout rotateDown(int col, int step) {
-        return new Portrait(this.screen().transpose()).rotateDown(col, step);
+        return new Portrait(screen().rotate(col, step));
     }
 
     @Override
     public Layout rotateRight(int row, int step) {
-        return new Landscape(this.screen().rotate(row, step));
+        return new Landscape(screen().transpose()).rotateRight(row, step);
     }
 }
