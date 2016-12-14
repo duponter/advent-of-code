@@ -115,14 +115,15 @@ public class Bot implements Target {
         public Predicate<ConveyorBelt> proceed(Bot bot) {
             Predicate<ConveyorBelt> predicate = conveyorBelt -> false;
             System.out.printf("low: %d - high: %d --> bot %d%n", lowValue, highValue, bot.number);
-            if (lowValue != 17 || highValue != 61) {
+//            if (lowValue != 17 || highValue != 61) {
                 predicate = conveyorBelt -> {
                     boolean result = bot.giveLowChip.apply(lowValue)
                             .executeWith(conveyorBelt) & bot.giveHighChip.apply(
                             highValue).executeWith(conveyorBelt);
-                    bot.chips = new None();                    return result;
+                    bot.chips = new None();
+                    return result;
                 };
-            }
+//            }
             return predicate;
         }
     }

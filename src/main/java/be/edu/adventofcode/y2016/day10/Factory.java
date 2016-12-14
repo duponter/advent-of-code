@@ -11,6 +11,12 @@ public class Factory implements TargetHandler<IntFunction<Target>> {
     private final Map<Integer, Bot> bots = new HashMap<>();
     private final Map<Integer, OutputBin> outputBins = new HashMap<>();
 
+    public int product() {
+        return outputBin(0).chip().getOrElseThrow(IllegalStateException::new)
+                * outputBin(1).chip().getOrElseThrow(IllegalStateException::new)
+                * outputBin(2).chip().getOrElseThrow(IllegalStateException::new);
+    }
+
     public Bot bot(int id) {
         return bots.computeIfAbsent(id, Bot::new);
     }

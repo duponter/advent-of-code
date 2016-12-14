@@ -2,11 +2,11 @@ package be.edu.adventofcode.y2016.day10;
 
 import java.util.function.Predicate;
 
-import javaslang.collection.List;
+import javaslang.control.Option;
 
 public class OutputBin implements Target {
     private final int number;
-    private List<Integer> chips = List.empty();
+    private Option<Integer> chip = Option.none();
 
     public OutputBin(int number) {
         this.number = number;
@@ -17,13 +17,13 @@ public class OutputBin implements Target {
         return this.number;
     }
 
-    public List<Integer> chips() {
-        return chips;
+    public Option<Integer> chip() {
+        return chip;
     }
 
     @Override
     public Predicate<ConveyorBelt> receiveChip(int chipValue) {
-        chips = chips.append(chipValue);
+        chip = Option.some(chipValue);
         return conveyorBelt -> true;
     }
 }

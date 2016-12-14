@@ -3,6 +3,8 @@ package be.edu.adventofcode.y2016.day10;
 import java.util.function.IntFunction;
 import java.util.function.Predicate;
 
+import javaslang.control.Option;
+
 public class ConveyorBelt implements InstructionHandler<Boolean> {
     private final Factory factory;
     private boolean running = false;
@@ -11,10 +13,10 @@ public class ConveyorBelt implements InstructionHandler<Boolean> {
         this.factory = factory;
     }
 
-    public Bot start() {
+    public Option<Bot> start() {
         running = true;
         this.factory.botsWith2Chips().head().start().test(this);
-        return this.factory.botsWith2Chips().head();
+        return this.factory.botsWith2Chips().headOption();
     }
 
     @Override

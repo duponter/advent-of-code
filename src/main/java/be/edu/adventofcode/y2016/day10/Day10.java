@@ -11,7 +11,7 @@ public class Day10 {
                 .map(Instruction::parse)
                 .forEach(instruction -> instruction.executeWith(conveyorBelt));
 
-        return conveyorBelt.start().number();
+        return conveyorBelt.start().map(Bot::number).getOrElseThrow(IllegalStateException::new);
     }
 
     public int part2(Input input) {
@@ -23,6 +23,6 @@ public class Day10 {
                 .forEach(instruction -> instruction.executeWith(conveyorBelt));
 
         conveyorBelt.start();
-        return 0;
+        return factory.product();
     }
 }
