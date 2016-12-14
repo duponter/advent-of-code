@@ -7,7 +7,8 @@ public class ReceiveChip implements Instruction {
     private static final Pattern PATTERN = Pattern.compile("value (\\d+) goes to (bot|output) (\\d+)");
 
     private final int chip;
-    private final Target target;
+    private final TargetType targetType;
+    private final int targetId;
 
     public static ReceiveChip parse(String input) {
         Matcher matcher = PATTERN.matcher(input);
@@ -15,19 +16,20 @@ public class ReceiveChip implements Instruction {
             throw new IllegalArgumentException(input);
         }
 
-        TargetType targetType = TargetType.valueOf(matcher.group(2).toUpperCase());
         return new ReceiveChip(Integer.parseInt(matcher.group(1)),
-                targetType.apply(Integer.parseInt(matcher.group(3))));
+                TargetType.valueOf(matcher.group(2).toUpperCase()),
+                Integer.parseInt(matcher.group(3)));
 
     }
 
-    protected ReceiveChip(int chip, Target target) {
+    protected ReceiveChip(int chip, TargetType targetType, int targetId) {
         this.chip = chip;
-        this.target = target;
+        this.targetType = targetType;
+        this.targetId = targetId;
     }
 
     @Override
     public <R> R executeWith(InstructionHandler<R> handler) {
-        return handler.receiveChip(chip, target);
+        return handler.receiveChip(chip, targetType, targetId);
     }
 }

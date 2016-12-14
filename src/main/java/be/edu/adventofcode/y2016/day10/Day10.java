@@ -4,12 +4,25 @@ import be.edu.adventofcode.Input;
 
 public class Day10 {
     public int part1(Input input) {
-        return input.lines()
+        Factory factory = new Factory();
+        ConveyorBelt conveyorBelt = new ConveyorBelt(factory);
+
+        input.lines()
                 .map(Instruction::parse)
-                .size();
+                .forEach(instruction -> instruction.executeWith(conveyorBelt));
+
+        return conveyorBelt.start().number();
     }
 
     public int part2(Input input) {
+        Factory factory = new Factory();
+        ConveyorBelt conveyorBelt = new ConveyorBelt(factory);
+
+        input.lines()
+                .map(Instruction::parse)
+                .forEach(instruction -> instruction.executeWith(conveyorBelt));
+
+        conveyorBelt.start();
         return 0;
     }
 }

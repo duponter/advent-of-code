@@ -5,7 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DisperseChips implements Instruction {
-    private static final Pattern PATTERN = Pattern.compile("bot (\\d+) gives low to (bot|output) (\\d+) and high to (bot|output) (\\d+)");
+    private static final Pattern PATTERN = Pattern.compile(
+            "bot (\\d+) gives low to (bot|output) (\\d+) and high to (bot|output) (\\d+)");
 
     private final int givingBot;
     private final IntFunction<ReceiveChip> forLowerValueChip;
@@ -18,10 +19,13 @@ public class DisperseChips implements Instruction {
         }
 
         int givingBot = Integer.parseInt(matcher.group(1));
-        Target lowChipTarget = TargetType.valueOf(matcher.group(2).toUpperCase()).apply(Integer.parseInt(matcher.group(3)));
-        Target highChipTarget = TargetType.valueOf(matcher.group(4).toUpperCase()).apply(Integer.parseInt(matcher.group(5)));
-        return new DisperseChips(givingBot, l -> new ReceiveChip(l, lowChipTarget), h -> new ReceiveChip(h, highChipTarget));
-
+        TargetType lowChipTargetType = TargetType.valueOf(matcher.group(2).toUpperCase());
+        int lowChipTargetId = Integer.parseInt(matcher.group(3));
+        TargetType highChipTargetType = TargetType.valueOf(matcher.group(4).toUpperCase());
+        int highChipTargetId = Integer.parseInt(matcher.group(5));
+        return new DisperseChips(givingBot,
+                l -> new ReceiveChip(l, lowChipTargetType, lowChipTargetId),
+                h -> new ReceiveChip(h, highChipTargetType, highChipTargetId));
     }
 
     private DisperseChips(int givingBot, IntFunction<ReceiveChip> forLowerValueChip, IntFunction<ReceiveChip> forHigherValueChip) {

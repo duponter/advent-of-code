@@ -1,18 +1,18 @@
 package be.edu.adventofcode.y2016.day10;
 
-import java.util.function.IntFunction;
-
-public enum TargetType implements IntFunction<Target> {
+public enum TargetType {
     BOT {
         @Override
-        public Target apply(int value) {
-            return new Bot(value);
+        <R> R handle(TargetHandler<R> handler) {
+            return handler.whenBot(this);
         }
     },
     OUTPUT {
         @Override
-        public Target apply(int value) {
-            return new Output(value);
+        <R> R handle(TargetHandler<R> handler) {
+            return handler.whenOutputBin(this);
         }
     };
+
+    abstract <R> R handle(TargetHandler<R> handler);
 }
