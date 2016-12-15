@@ -1,7 +1,5 @@
 package be.edu.adventofcode.y2016.day10;
 
-import java.util.function.Predicate;
-
 import javaslang.control.Option;
 
 public class OutputBin implements Target {
@@ -22,8 +20,12 @@ public class OutputBin implements Target {
     }
 
     @Override
-    public Predicate<ConveyorBelt> receiveChip(int chipValue) {
+    public boolean workUntil(Work work) {
+        return false;
+    }
+
+    @Override
+    public void receiveChip(int chipValue) {
         chip = Option.some(chipValue);
-        return conveyorBelt -> true;
     }
 }

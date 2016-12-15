@@ -4,25 +4,21 @@ import be.edu.adventofcode.Input;
 
 public class Day10 {
     public int part1(Input input) {
-        Factory factory = new Factory();
-        ConveyorBelt conveyorBelt = new ConveyorBelt(factory);
-
-        input.lines()
-                .map(Instruction::parse)
-                .forEach(instruction -> instruction.accept(factory));
-
-        return conveyorBelt.start().map(Bot::number).getOrElseThrow(IllegalStateException::new);
+        return this.initializeFactory(input)
+                .workUntilChips17And61()
+                .number();
     }
 
     public int part2(Input input) {
-        Factory factory = new Factory();
-        ConveyorBelt conveyorBelt = new ConveyorBelt(factory);
+        return this.initializeFactory(input)
+                .product();
+    }
 
+    private Factory initializeFactory(Input input) {
+        Factory factory = new Factory();
         input.lines()
                 .map(Instruction::parse)
-                .forEach(instruction -> instruction.accept(factory));
-
-        conveyorBelt.start();
-        return factory.product();
+                .forEach(instruction -> instruction.apply(factory));
+        return factory;
     }
 }
