@@ -35,6 +35,11 @@ public class DisperseChips implements Instruction {
     }
 
     @Override
+    public void accept(Factory factory) {
+        factory.bot(givingBot).instruct(forLowerValueChip, forHigherValueChip);
+    }
+
+    @Override
     public <R> R executeWith(InstructionHandler<R> handler) {
         return handler.disperseChips(givingBot, forLowerValueChip, forHigherValueChip);
     }

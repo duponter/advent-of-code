@@ -29,6 +29,11 @@ public class ReceiveChip implements Instruction {
     }
 
     @Override
+    public void accept(Factory factory) {
+        targetType.handle(factory).apply(targetId).receiveChip(chip);
+    }
+
+    @Override
     public <R> R executeWith(InstructionHandler<R> handler) {
         return handler.receiveChip(chip, targetType, targetId);
     }

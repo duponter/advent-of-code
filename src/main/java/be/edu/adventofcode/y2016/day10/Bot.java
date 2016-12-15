@@ -21,6 +21,10 @@ public class Bot implements Target {
             public <R> R executeWith(InstructionHandler<R> handler) {
                 throw new IllegalStateException("No instructions set on bot " + bot);
             }
+
+            @Override
+            public void accept(Factory factory) {
+            }
         };
     }
 

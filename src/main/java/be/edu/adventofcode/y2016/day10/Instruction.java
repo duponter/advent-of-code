@@ -1,10 +1,12 @@
 package be.edu.adventofcode.y2016.day10;
 
+import java.util.function.Consumer;
+
 import static javaslang.API.$;
 import static javaslang.API.Case;
 import static javaslang.API.Match;
 
-public interface Instruction {
+public interface Instruction extends Consumer<Factory> {
     static Instruction parse(String input) {
         return Match(input).of(
                 Case(s -> s.startsWith("value"), ReceiveChip::parse),

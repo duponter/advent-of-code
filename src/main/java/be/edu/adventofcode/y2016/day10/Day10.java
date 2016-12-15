@@ -9,7 +9,7 @@ public class Day10 {
 
         input.lines()
                 .map(Instruction::parse)
-                .forEach(instruction -> instruction.executeWith(conveyorBelt));
+                .forEach(instruction -> instruction.accept(factory));
 
         return conveyorBelt.start().map(Bot::number).getOrElseThrow(IllegalStateException::new);
     }
@@ -20,7 +20,7 @@ public class Day10 {
 
         input.lines()
                 .map(Instruction::parse)
-                .forEach(instruction -> instruction.executeWith(conveyorBelt));
+                .forEach(instruction -> instruction.accept(factory));
 
         conveyorBelt.start();
         return factory.product();
