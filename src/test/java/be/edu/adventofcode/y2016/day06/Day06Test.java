@@ -3,8 +3,9 @@ package be.edu.adventofcode.y2016.day06;
 import be.edu.adventofcode.ResourceInput;
 import be.edu.adventofcode.Solve;
 import be.edu.adventofcode.StringInput;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day06Test {
     @Test
@@ -26,7 +27,7 @@ public class Day06Test {
                 "vrdear",
                 "dvrsen",
                 "enarar");
-        Assertions.assertThat(new Day06().part1(new StringInput(input))).isEqualTo("easter");
+        assertThat(new Day06().part1(new StringInput(input))).isEqualTo("easter");
     }
 
     @Test
@@ -36,6 +37,7 @@ public class Day06Test {
                 .part(1)
                 .q("What is the error-corrected version of the message being sent?")
                 .a(msg);
+        assertThat(msg).isEqualTo("tsreykjj");
     }
 
     @Test
@@ -57,7 +59,7 @@ public class Day06Test {
                 "vrdear",
                 "dvrsen",
                 "enarar");
-        Assertions.assertThat(new Day06().part2(new StringInput(input))).isEqualTo("advent");
+        assertThat(new Day06().part2(new StringInput(input))).isEqualTo("advent");
     }
 
     @Test
@@ -67,6 +69,7 @@ public class Day06Test {
                 .part(2)
                 .q("Given this new decoding methodology, what is the original message that Santa is trying to send?")
                 .a(msg);
+        assertThat(msg).isEqualTo("hnfbujie");
     }
 
 }

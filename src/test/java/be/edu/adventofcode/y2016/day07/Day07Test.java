@@ -3,8 +3,9 @@ package be.edu.adventofcode.y2016.day07;
 import be.edu.adventofcode.ResourceInput;
 import be.edu.adventofcode.Solve;
 import be.edu.adventofcode.StringInput;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day07Test {
     @Test
@@ -14,7 +15,7 @@ public class Day07Test {
                 "abcd[bddb]xyyx",
                 "aaaa[qwer]tyui",
                 "ioxxoj[asdfgh]zxcvbn");
-        Assertions.assertThat(new Day07().part1(new StringInput(input))).isEqualTo(2);
+        assertThat(new Day07().part1(new StringInput(input))).isEqualTo(2);
     }
 
     @Test
@@ -24,6 +25,7 @@ public class Day07Test {
                 .part(1)
                 .q("How many IPs in your puzzle input support TLS?")
                 .a(count);
+        assertThat(count).isEqualTo(115);
     }
 
     @Test
@@ -33,7 +35,7 @@ public class Day07Test {
                 "xyx[xyx]xyx",
                 "aaa[kek]eke",
                 "zazbz[bzb]cdb");
-        Assertions.assertThat(new Day07().part2(new StringInput(input))).isEqualTo(3);
+        assertThat(new Day07().part2(new StringInput(input))).isEqualTo(3);
     }
 
     @Test
@@ -43,6 +45,7 @@ public class Day07Test {
                 .part(2)
                 .q("How many IPs in your puzzle input support SSL?")
                 .a(count);
+        assertThat(count).isEqualTo(231);
     }
 
 }

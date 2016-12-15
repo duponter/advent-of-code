@@ -4,6 +4,8 @@ import be.edu.adventofcode.ResourceInput;
 import be.edu.adventofcode.Solve;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class Day08Test {
     @Test
     void solvePart1() {
@@ -12,6 +14,7 @@ public class Day08Test {
                 .part(1)
                 .q("How many pixels should be lit?")
                 .a(count);
+        assertThat(count).isEqualTo(116);
     }
 
     @Test
