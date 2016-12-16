@@ -22,5 +22,9 @@ public final class Solve {
         default void a(int answer) {
             this.a(Integer.toString(answer));
         }
+
+        default void a(long answer) {
+            this.a(Long.toString(answer));
+        }
     }
 }

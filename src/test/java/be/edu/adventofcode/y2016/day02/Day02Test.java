@@ -3,8 +3,9 @@ package be.edu.adventofcode.y2016.day02;
 import be.edu.adventofcode.ResourceInput;
 import be.edu.adventofcode.Solve;
 import be.edu.adventofcode.StringInput;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day02Test {
     @Test
@@ -14,7 +15,7 @@ public class Day02Test {
                 "RRDDD",
                 "LURDL",
                 "UUUUD");
-        Assertions.assertThat(new Day02().part1(new StringInput(input))).isEqualTo(1985);
+        assertThat(new Day02().part1(new StringInput(input))).isEqualTo(1985);
     }
 
     @Test
@@ -24,6 +25,7 @@ public class Day02Test {
                 .part(1)
                 .q("What is the bathroom code?")
                 .a(code);
+        assertThat(code).isEqualTo(65556);
     }
 
     @Test
@@ -33,7 +35,7 @@ public class Day02Test {
                 "RRDDD",
                 "LURDL",
                 "UUUUD");
-        Assertions.assertThat(new Day02().part2(new StringInput(input))).isEqualTo("5DB3");
+        assertThat(new Day02().part2(new StringInput(input))).isEqualTo("5DB3");
     }
 
     @Test
@@ -43,5 +45,6 @@ public class Day02Test {
                 .part(2)
                 .q("What is the correct bathroom code?")
                 .a(code);
+        assertThat(code).isEqualTo("CB779");
     }
 }

@@ -3,8 +3,9 @@ package be.edu.adventofcode.y2016.day04;
 import be.edu.adventofcode.ResourceInput;
 import be.edu.adventofcode.Solve;
 import be.edu.adventofcode.StringInput;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class Day04Test {
     @Test
@@ -14,7 +15,7 @@ public class Day04Test {
                 "a-b-c-d-e-f-g-h-987[abcde]",
                 "not-a-real-room-404[oarel]",
                 "totally-real-room-200[decoy]");
-        Assertions.assertThat(new Day04().part1(new StringInput(input))).isEqualTo(1514);
+        assertThat(new Day04().part1(new StringInput(input))).isEqualTo(1514);
     }
 
     @Test
@@ -24,11 +25,12 @@ public class Day04Test {
                 .part(1)
                 .q("What is the sum of the sector IDs of the real rooms?")
                 .a(sum);
+        assertThat(sum).isEqualTo(409147);
     }
 
     @Test
     void assertPart2() {
-        Assertions.assertThat(Room.parse("qzmt-zixmtkozy-ivhz-343[abcde]").realName()).isEqualTo("very encrypted name");
+        assertThat(Room.parse("qzmt-zixmtkozy-ivhz-343[abcde]").realName()).isEqualTo("very encrypted name");
     }
 
     @Test
@@ -38,6 +40,7 @@ public class Day04Test {
                 .part(2)
                 .q("What is the sector ID of the room where North Pole objects are stored?")
                 .a(sectorId);
+        assertThat(sectorId).isEqualTo(991);
     }
 
 }
