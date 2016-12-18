@@ -12,12 +12,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class Day11Test {
     @Test
     void assertPart1() {
-        String input = String.join("\n",
-                "F4 .  .  .  .  .  " +
-                "F3 .  .  .  LG .  " +
-                "F2 .  HG .  .  .  " +
-                "F1 E  .  HM .  LM ");
-        assertThat(new Day11().part1(new StringInput(input))).isEqualTo(11);
+        Facility facility = new Facility(new Elevator(),
+                new Floor(1, new Microchip(Radioisotope.HYDROGEN), new Microchip(Radioisotope.LITHIUM)),
+                new Floor(2, new Generator(Radioisotope.HYDROGEN)),
+                new Floor(3, new Generator(Radioisotope.LITHIUM)),
+                new Floor(4));
+        facility.print(Radioisotope.HYDROGEN, Radioisotope.LITHIUM);
+        assertThat(new Day11().part1(new StringInput(""))).isEqualTo(11);
     }
 
     @Test
